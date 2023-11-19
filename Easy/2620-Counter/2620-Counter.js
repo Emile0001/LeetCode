@@ -33,9 +33,23 @@
  * @param {number} n
  * @return {Function} counter
  */
-var createCounter = function (n) {
-    return function () {};
+
+let createCounter = function (n) {
+    // Initialize the counter variable with the given value
+    let counterValue = n;
+
+    // Return a function that increments and returns the counter value
+    return function () {
+        return counterValue++;
+    };
 };
+
+// Example usage:
+const counter = createCounter(10);
+
+console.log(counter()); // Output: 10
+console.log(counter()); // Output: 11
+console.log(counter()); // Output: 12
 
 /**
  * const counter = createCounter(10)
