@@ -21,9 +21,25 @@
 /**
  * @return {null|boolean|number|string|Array|Object}
  */
-Array.prototype.last = function () {};
+// Array.prototype.last = function () {};
 
 /**
  * const arr = [1, 2, 3];
  * arr.last(); // 3
  */
+if (!Array.prototype.last) {
+    Object.defineProperty(Array.prototype, "last", {
+        get: function () {
+            return this.length > 0 ? this[this.length - 1] : -1;
+        },
+        enumerable: false,
+        configurable: true,
+    });
+}
+
+// Example usage:
+const nums = [null, {}, 3];
+console.log(nums.last); // Output: 3
+
+const emptyArr = [];
+console.log(emptyArr.last); // Output: -1
