@@ -25,4 +25,39 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var deleteDuplicates = function (head) {};
+// var deleteDuplicates = function (head) {};
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteDuplicates = function (head) {
+    // Check if the list is empty or has only one node
+    if (!head || !head.next) {
+        return head;
+    }
+
+    // Start from the head of the list
+    let current = head;
+
+    // Traverse the list
+    while (current.next !== null) {
+        // Compare the current node's value with the next node's value
+        if (current.val === current.next.val) {
+            // If they are equal, update the next pointer to skip the duplicate node
+            current.next = current.next.next;
+        } else {
+            // Move to the next node if no duplicate is found
+            current = current.next;
+        }
+    }
+
+    return head;
+};
