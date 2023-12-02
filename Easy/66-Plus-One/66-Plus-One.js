@@ -33,4 +33,29 @@
  * @param {number[]} digits
  * @return {number[]}
  */
-var plusOne = function (digits) {};
+var plusOne = function (digits) {
+    let carry = 1;
+
+    for (let i = digits.length - 1; i >= 0; i--) {
+        const sum = digits[i] + carry;
+        digits[i] = sum % 10;
+        carry = Math.floor(sum / 10);
+
+        if (carry === 0) {
+            // No need to continue if there is no carry.
+            break;
+        }
+    }
+
+    if (carry > 0) {
+        // If there is a carry after processing all digits, add a new digit.
+        digits.unshift(carry);
+    }
+
+    return digits;
+};
+
+// Example usage:
+console.log(plusOne([1, 2, 3])); // Output: [1, 2, 4]
+console.log(plusOne([4, 3, 2, 1])); // Output: [4, 3, 2, 2]
+console.log(plusOne([9])); // Output: [1, 0]
