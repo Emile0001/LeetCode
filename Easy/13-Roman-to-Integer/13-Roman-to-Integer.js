@@ -43,4 +43,40 @@
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function (s) {};
+var romanToInt = function (s) {
+    // Define a mapping of Roman numeral symbols to their corresponding values.
+    const romanMap = {
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000,
+    };
+
+    let result = 0;
+
+    // Iterate through the characters of the Roman numeral string.
+    for (let i = 0; i < s.length; i++) {
+        const currentSymbol = s[i];
+        const currentValue = romanMap[currentSymbol];
+        const nextSymbol = s[i + 1];
+        const nextValue = romanMap[nextSymbol];
+
+        // Check for subtraction cases (IV, IX, XL, XC, CD, CM).
+        if (nextValue > currentValue) {
+            result += nextValue - currentValue;
+            i++; // Skip the next symbol since it's already accounted for.
+        } else {
+            result += currentValue;
+        }
+    }
+
+    return result;
+};
+
+// Example usage:
+console.log(romanToInt("III")); // Output: 3
+console.log(romanToInt("LVIII")); // Output: 58
+console.log(romanToInt("MCMXCIV")); // Output: 1994
