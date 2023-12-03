@@ -47,4 +47,28 @@
  * @param {number} val
  * @return {number}
  */
-var removeElement = function (nums, val) {};
+var removeElement = function (nums, val) {
+    let nonValCount = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== val) {
+            // If the current element is not equal to val
+            // Move the non-val element to the next position
+            nums[nonValCount] = nums[i];
+            nonValCount++;
+        }
+    }
+
+    return nonValCount;
+};
+
+// Example usage:
+const nums1 = [3, 2, 2, 3];
+const val1 = 3;
+const k1 = removeElement(nums1, val1);
+console.log(k1); // Output: 2, nums1 = [2, 2, _, _]
+
+const nums2 = [0, 1, 2, 2, 3, 0, 4, 2];
+const val2 = 2;
+const k2 = removeElement(nums2, val2);
+console.log(k2); // Output: 5, nums2 = [0, 1, 4, 0, 3, _, _, _]
