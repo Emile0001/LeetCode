@@ -28,4 +28,37 @@
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function (s) {};
+
+var isValid = function (s) {
+    const stack = [];
+    const bracketsMap = {
+        "(": ")",
+        "{": "}",
+        "[": "]",
+    };
+
+    for (let i = 0; i < s.length; i++) {
+        const currentBracket = s[i];
+
+        if (bracketsMap[currentBracket]) {
+            // If it's an open bracket, push it onto the stack
+            stack.push(currentBracket);
+        } else {
+            // If it's a close bracket, check if it matches the last open bracket
+            const lastOpenBracket = stack.pop();
+
+            if (currentBracket !== bracketsMap[lastOpenBracket]) {
+                // If not, the string is not valid
+                return false;
+            }
+        }
+    }
+
+    // If the stack is empty, all brackets were closed correctly
+    return stack.length === 0;
+};
+
+// Test cases
+console.log(isValid("()")); // Output: true
+console.log(isValid("()[]{}")); // Output: true
+console.log(isValid("(]")); // Output: false
