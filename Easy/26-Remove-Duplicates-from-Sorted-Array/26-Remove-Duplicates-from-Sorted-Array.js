@@ -42,4 +42,34 @@
  * @param {number[]} nums
  * @return {number}
  */
-var removeDuplicates = function (nums) {};
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function (nums) {
+    if (nums.length === 0) {
+        return 0;
+    }
+
+    let uniqueCount = 1; // Initial count for the first element
+
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] !== nums[i - 1]) {
+            // If the current element is different from the previous one
+            // Move the unique element to the next position
+            nums[uniqueCount] = nums[i];
+            uniqueCount++;
+        }
+    }
+
+    return uniqueCount;
+};
+
+// Example usage:
+const nums1 = [1, 1, 2];
+const k1 = removeDuplicates(nums1);
+console.log(k1); // Output: 2, nums1 = [1, 2, _]
+
+const nums2 = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
+const k2 = removeDuplicates(nums2);
+console.log(k2); // Output: 5, nums2 = [0, 1, 2, 3, 4, _, _, _, _, _]
