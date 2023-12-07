@@ -26,4 +26,27 @@
  * @param {number} n
  * @return {number}
  */
-var climbStairs = function (n) {};
+var climbStairs = function (n) {
+    if (n <= 2) {
+        return n;
+    }
+
+    // Initialize an array to store the number of ways to reach each step.
+    const ways = new Array(n + 1);
+
+    // Base cases: there are 1 way to reach the first step and 2 ways to reach the second step.
+    ways[1] = 1;
+    ways[2] = 2;
+
+    // Calculate the number of ways for each step starting from the third step.
+    for (let i = 3; i <= n; i++) {
+        ways[i] = ways[i - 1] + ways[i - 2];
+    }
+
+    // The final result is the number of ways to reach the top step.
+    return ways[n];
+};
+
+// Example usage:
+console.log(climbStairs(2)); // Output: 2
+console.log(climbStairs(3)); // Output: 3
