@@ -25,4 +25,22 @@
  * @param {number[]} nums
  * @return {number}
  */
-var singleNumber = function (nums) {};
+var singleNumber = function (nums) {
+    let result = 0;
+
+    for (let num of nums) {
+        result ^= num;
+    }
+
+    return result;
+};
+
+// Example usage
+var nums1 = [2, 2, 1];
+console.log(singleNumber(nums1)); // Output: 1
+
+var nums2 = [4, 1, 2, 1, 2];
+console.log(singleNumber(nums2)); // Output: 4
+
+var nums3 = [1];
+console.log(singleNumber(nums3)); // Output: 1
