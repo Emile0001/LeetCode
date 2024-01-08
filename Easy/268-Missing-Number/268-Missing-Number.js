@@ -29,19 +29,29 @@
  * @param {number[]} nums
  * @return {number}
  */
-let nums = [5, 8, 4, 3, 2, 6, 7];
+let nums = [0];
 
 var missingNumber = function (nums) {
+    // Sort the input array in ascending order
     nums = nums.sort((a, b) => a - b);
+    // Initialize a variable currentNum with the first element of the sorted array
     let currentNum = nums[0];
 
-    for (let i = 0; i < nums.length + 1; i++) {
+    // Iterate through the sorted array
+    for (let i = 0; i < nums.length; i++) {
+        // Check if the current element is equal to currentNum
         if (nums[i] == currentNum) {
+            // If equal, increment currentNum
             currentNum++;
         } else {
+            // If not equal, return currentNum as it represents the missing number
             return currentNum;
         }
     }
+
+    // If the loop completes without finding a missing number,
+    // return the last element in the sorted array as the missing number
+    return currentNum;
 };
 
 console.log(missingNumber(nums));
