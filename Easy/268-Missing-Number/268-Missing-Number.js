@@ -29,16 +29,19 @@
  * @param {number[]} nums
  * @return {number}
  */
-const nums = [3, 0, 1];
+let nums = [5, 8, 4, 3, 2, 6, 7];
 
-// var missingNumber = function(nums) {
+var missingNumber = function (nums) {
+    nums = nums.sort((a, b) => a - b);
+    let currentNum = nums[0];
 
-// };
-
-function missingNumber(nums) {
-    for (let i = 0; 0 < nums.length; i++) {
-        console.log(i);
+    for (let i = 0; i < nums.length + 1; i++) {
+        if (nums[i] == currentNum) {
+            currentNum++;
+        } else {
+            return currentNum;
+        }
     }
-}
+};
 
-missingNumber(nums);
+console.log(missingNumber(nums));
